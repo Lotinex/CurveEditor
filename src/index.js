@@ -39,8 +39,10 @@ function addControllableLine(start, end){
     };
     const editPathData = (pathData, index, data) => {
         let res = pathData.split(' ');
-        for(const i of index){
-            res[i] = data[i];
+        let indexCounter = 0;
+        for(const v of data){
+            res[index[indexCounter]] = v;
+            indexCounter++;
         }
         return res.join(' ');
     }
@@ -74,16 +76,16 @@ function addControllableLine(start, end){
         return editPathData(d, [1, 2], [null, x , y])
     })
     createControlPoint(getPoint(start, end, 0.3).x, getPoint(start, end, 0.3).y, (d, x, y) => {
-        return editPathData(d, [4, 5], [null, null, null, null, x, y])
+        return editPathData(d, [4, 5], [x, y])
     })
     createControlPoint(getPoint(start, end, 0.6).x, getPoint(start, end, 0.6).y, (d, x, y) => {
-        return editPathData(d, [6, 7], [null, null, null, null, null, null, x, y])
+        return editPathData(d, [6, 7], [x, y])
     })
     createControlPoint(getPoint(start, end, 0.6).x, getPoint(start, end, 0.6).y, (d, x, y) => {
-        return editPathData(d, [9, 10], [null, null, null, null, null, null, null, null, null, x, y])
+        return editPathData(d, [9, 10], [x, y])
     })
     createControlPoint(end[0], end[1], (d, x, y) => {
-        return editPathData(d, [11, 12], [null, null, null, null, null, null, null, null, null, null, null, x, y])
+        return editPathData(d, [11, 12], [x, y])
     })
     const enablePoints = () => {
         for(const p of points) p.style.display = 'block';
